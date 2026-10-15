@@ -4,7 +4,8 @@
     <application
         android:label="blog_web_app"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher"
+        android:usesCleartextTraffic="true">   <!-- http 프로토콜 허용 -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
