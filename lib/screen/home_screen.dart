@@ -32,6 +32,20 @@ class HomeScreen extends StatelessWidget {
         centerTitle: true,
         // 앱 타이틀 설정
         title: Text('Code Factory'),
+        // 앱바에 액션 버튼을 추가할 수 있는 매개변수
+        actions: [
+          IconButton(
+            // 아이콘을 눌렀을 때 콜백 함수
+            onPressed: () {
+              // 웹뷰에서 보여줄 사이트 실행
+              webViewController.loadRequest(uri);
+            },
+            // 홈 버튼 아이콘 설정
+            icon: Icon(
+              Icons.home,
+            ),
+          ),
+        ],
       ),
       body: WebViewWidget(   // 웹뷰 위젯 추가
         controller: webViewController,
