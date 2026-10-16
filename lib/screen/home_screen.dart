@@ -1,8 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:webview_flutter/webview_flutter.dart';
+
+// URI/URL을 생성하는 데 도움을 주는 클래스
+final uri = Uri.parse('https://blog.codefactory.ai');
 
 class HomeScreen extends StatelessWidget {
+  // WebViewController 선언
+  WebViewController webViewController = WebViewController()
+    // JavaScript가 제한 없이 실행될 수 있도록 허용
+    ..setJavaScriptMode(JavaScriptMode.unrestricted)
+    // 웹뷰 내에서 발생하는 페이지 이동, 로딩 상태 등의 이벤트를 감지하고 제어
+    ..setNavigationDelegate(NavigationDelegate(
+      // URL의 로딩이 완료되었을 때 호출되는 콜백 함수
+      onPageFinished: (String url) {
+        print(url);
+      }
+    ))
+    ..loadRequest(uri);   // Controller 변수 생성
+  
   // const 생성자 : 최초 선언 후 변경 불가능한 빌드 타임 함수
-  const HomeScreen({Key? key}) : super(key: key);
+  HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +33,9 @@ class HomeScreen extends StatelessWidget {
         // 앱 타이틀 설정
         title: Text('Code Factory'),
       ),
-      body: Text('Home Screen'),
+      body: WebViewWidget(   // 웹뷰 위젯 추가
+        controller: webViewController,
+      ),
     );
   }
 }
