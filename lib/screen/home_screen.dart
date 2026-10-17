@@ -59,6 +59,7 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
         // 앱바에 액션 버튼을 추가할 수 있는 매개변수
+        // 앱바의 오른쪽에 배치되는 위젯을 정의하는 속성
         actions: [
           IconButton(   // 앞으로 가기 버튼
             onPressed: goForward,
